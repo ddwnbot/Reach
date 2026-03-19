@@ -32,12 +32,7 @@
       "csp": null
     }
   },
-  "plugins": {
-    "updater": {
-      "endpoints": [],
-      "pubkey": ""
-    }
-  },
+  "plugins": {},
   "bundle": {
     "active": true,
     "targets": "all",
