@@ -586,8 +586,8 @@
 				<div
 					class="folder-block ungrouped"
 					style="--folder-color: #374151;"
-					on:dragover|preventDefault
-					on:drop={(e) => moveSessionTo(null)}
+					ondragover|preventDefault
+					ondrop={(e) => moveSessionTo(null)}
 				>
 					<div class="folder-header">
 						<div class="folder-title">
@@ -596,16 +596,16 @@
 							<span class="folder-count">{ungroupedSessions.length}</span>
 						</div>
 					</div>
-					<div class="folder-content" on:dragover|preventDefault on:drop={(e) => moveSessionTo(null)}
+					<div class="folder-content" ondragover|preventDefault ondrop={(e) => moveSessionTo(null)}
 					>
 						{#each ungroupedSessions as session, index (session.id)}
 							<div
 								class="session-card-wrapper"
 								draggable="true"
-								on:dragstart={(e) => handleSessionDragStart(session, e)}
-								on:dragend={handleSessionDragEnd}
-								on:dragover|preventDefault
-								on:drop={(e) => moveSessionTo(null, index)}
+								ondragstart={(e) => handleSessionDragStart(session, e)}
+								ondragend={handleSessionDragEnd}
+								ondragover|preventDefault
+								ondrop={(e) => moveSessionTo(null, index)}
 								animate:flip
 							>
 								{#if deleteConfirm === session.id}
@@ -637,15 +637,15 @@
 				<div
 					class="folder-block"
 					style="--folder-color: {folder.color ?? '#3b82f6'};"
-					on:dragover|preventDefault
-					on:drop={(e) => handleFolderDrop(folder.id, e)}
+					ondragover|preventDefault
+					ondrop={(e) => handleFolderDrop(folder.id, e)}
 					animate:flip
 				>
 					<div
 						class="folder-header"
 						draggable="true"
-						on:dragstart={(e) => handleFolderDragStart(folder, e)}
-						on:dragend={handleFolderDragEnd}
+						ondragstart={(e) => handleFolderDragStart(folder, e)}
+						ondragend={handleFolderDragEnd}
 					>
 						<div class="folder-title" onclick={() => toggleFolder(folder.id)}>
 							<span class="folder-icon">{folder.icon ?? '📁'}</span>
@@ -659,7 +659,7 @@
 					</div>
 
 					{#if !folderCollapse[folder.id]}
-						<div class="folder-content" on:dragover|preventDefault on:drop={(e) => moveSessionTo(folder.id)}
+						<div class="folder-content" ondragover|preventDefault ondrop={(e) => moveSessionTo(folder.id)}
 						>
 							{#if folderSessions.length === 0}
 								<div class="folder-empty">Drop sessions here</div>
@@ -668,10 +668,10 @@
 								<div
 									class="session-card-wrapper"
 									draggable="true"
-									on:dragstart={(e) => handleSessionDragStart(session, e)}
-									on:dragend={handleSessionDragEnd}
-									on:dragover|preventDefault
-									on:drop={(e) => moveSessionTo(folder.id, index)}
+									ondragstart={(e) => handleSessionDragStart(session, e)}
+									ondragend={handleSessionDragEnd}
+									ondragover|preventDefault
+									ondrop={(e) => moveSessionTo(folder.id, index)}
 									animate:flip
 								>
 									{#if deleteConfirm === session.id}
