@@ -17,6 +17,7 @@ jobs:
           fetch-depth: 0
 
       - name: Create tag on release commit
+        id: tag
         shell: bash
         run: |
           MSG="${{ github.event.head_commit.message }}"
@@ -26,7 +27,14 @@ jobs:
             git config user.name "github-actions"
             git config user.email "github-actions@github.com"
             git tag -a "$TAG" -m "Release $TAG"
+            echo "tag=$TAG" >> $GITHUB_OUTPUT
             git push origin "$TAG"
           else
             echo "No release tag requested."
           fi
+
+      - name: Trigger release workflow
+        if: ${{ contains(github.event.head_commit.message, 'release:') && steps.tag.outputs.tag != '' }}
+        run: |
+          TAG=${{ steps.tag.outputs.tag }}
+          curl -L -X POST             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"             -H "Accept: application/vnd.github+json"             https://api.github.com/repos/${{ github.repository }}/actions/workflows/release.yml/dispatches             -d '{"ref":"'"$TAG"'"}'
