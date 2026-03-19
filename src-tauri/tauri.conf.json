@@ -20,7 +20,12 @@
         "minHeight": 600,
         "decorations": false,
         "transparent": false,
-        "backgroundColor": [10, 10, 10, 255]
+        "backgroundColor": [
+          10,
+          10,
+          10,
+          255
+        ]
       }
     ],
     "security": {
@@ -29,10 +34,7 @@
   },
   "plugins": {
     "updater": {
-      "endpoints": [
-        "https://github.com/alexandrosnt/Reach/releases/latest/download/latest.json"
-      ],
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDFCRkZFNDFCOTkzQTMxN0YKUldSL01UcVpHK1QvR3phYzY3VVVVWUlZYjIxdUh0bmprWDdCNUFRMG9kS052UlBwMm5kVXFwb1cK"
+      "endpoints": []
     }
   },
   "bundle": {
@@ -54,10 +56,16 @@
     },
     "linux": {
       "deb": {
-        "depends": ["libwebkit2gtk-4.1-0", "libappindicator3-1"]
+        "depends": [
+          "libwebkit2gtk-4.1-0",
+          "libappindicator3-1"
+        ]
       },
       "rpm": {
-        "depends": ["webkit2gtk4.1", "libappindicator-gtk3"]
+        "depends": [
+          "webkit2gtk4.1",
+          "libappindicator-gtk3"
+        ]
       }
     }
   }
